@@ -18,7 +18,7 @@ Volbou **HTTP** se založí nový požadavek, u kterého je nutné zadat název 
 
 ## 3. Zadání autentizačního údaje k požadavku
 
-Pro odesílání požadavků na API je nutné v hlavičce každého požadavku uvádět autentizační údaj - získaný token nebo API klíč. Způsob získání těchto údajů je popsán v kapitole [Způsoby autentizace](../02-autentizace/zpusoby-autentizace.md) na stránce Obecné.
+Pro odesílání požadavků na API je nutné v hlavičce každého požadavku uvádět autentizační údaj - získaný token nebo API klíč. Api klíč je nutné vložit do hlavičky každého požadavku. Způsob získání těchto údajů je popsán v kapitole [Způsoby autentizace](../02-autentizace/zpusoby-autentizace.md) na stránce Obecné.
 
 Abyste nemuseli v programu Postman způsob autentizace opakovaně zadávat do hlavičky každého požadavku, nastavte jej přímo u kolekce na záložce **Authorization** v poli **Type** vybráním jedné z možností **Bearer Token** nebo **API Key** a zadáním získaného tokenu, resp. API klíče.
 

@@ -6,8 +6,14 @@ Pro vývojáře je k dispozici SDK pro C#.
 
 ### Instalace
 
+SDK je dostupné přes NuGet:
+
+- **Klient:** [Mph.OpenApi.Client](https://www.nuget.org/packages/Mph.OpenApi.Client/)
+- **DTO:** [Mph.OpenApi.Dto](https://www.nuget.org/packages/Mph.OpenApi.Dto/)
+
 ```bash
-dotnet add package Mph.OpenApi.Sdk
+dotnet add package Mph.OpenApi.Client
+dotnet add package Mph.OpenApi.Dto
 ```
 
 ### Použití
