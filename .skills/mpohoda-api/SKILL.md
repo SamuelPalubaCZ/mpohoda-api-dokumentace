@@ -105,34 +105,213 @@ Authorization: Bearer získaný-token
 
 > **Důležité:** Token má omezenou platnost (expires_in). Po vypršení je nutné získat nový.
 
-## Hlavní entity (endpointy)
+## Kompletní seznam všech 87 endpointů
 
-### Doklady
-- **IssuedInvoices** — Vydané faktury (včetně PDF, ISDOC, likvidace, úhrady)
-- **ReceivedInvoices** — Přijaté faktury
-- **IssuedOrders** — Vydané objednávky (včetně přenosu do přijaté faktury)
-- **ReceivedOrders** — Přijaté objednávky (včetně přenosu do vydané faktury)
-- **IssuedOffers** — Nabídky
-- **IssueSlips** — Výdejky
-- **IssuedAdvanceInvoices** — Zálohové faktury
-- **IssuedInvoiceCorrectiveTaxDocuments** — Opravné daňové doklady
+### Doklady (41 endpointů)
 
-### Adresář
-- **BusinessPartners** — Odběratelé/dodavatelé
-- **PriceListItems** — Ceníkové položky (skladové zásoby)
-- **PaymentMethods** — Formy úhrady
-- **BankAccounts** — Bankovní účty
-- **CashRegisters** — Pokladny
+#### Vydané faktury — `IssuedInvoices` (10)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/IssuedInvoices` | Seznam vydaných faktur |
+| POST | `/v1/IssuedInvoices` | Vytvoření vydané faktury |
+| GET | `/v1/IssuedInvoices/{id}` | Detail vydané faktury |
+| GET | `/v1/IssuedInvoices/{id}/pdf` | PDF vydané faktury |
+| GET | `/v1/IssuedInvoices/{id}/isdoc` | ISDOC vydané faktury |
+| GET | `/v1/IssuedInvoices/{id}/RestToPay` | Zbývající částka k úhradě |
+| GET | `/v1/IssuedInvoices/Unpaid` | Seznam nezaplacených faktur |
+| POST | `/v1/IssuedInvoices/{id}/Liquidate/Standalone/Fully` | Plná likvidace |
+| POST | `/v1/IssuedInvoices/{id}/Liquidate/Standalone/Partially` | Částečná likvidace |
+| GET | `/v1/IssuedInvoices/Liquidation/{id}` | Detail likvidace |
 
-### Nastavení
-- **VatRates** — DPH sazby
-- **Currencies** — Měny
-- **ExchangeRates** — Kurzy
-- **Centres** — Střediska
-- **Activities** — Činnosti
-- **Countries** — Země
-- **Regions** — Kraje
-- **Establishments** — Provozovny
+#### Přijaté faktury — `ReceivedInvoices` (4)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/ReceivedInvoices` | Seznam přijatých faktur |
+| POST | `/v1/ReceivedInvoices` | Vytvoření přijaté faktury |
+| GET | `/v1/ReceivedInvoices/{id}` | Detail přijaté faktury |
+| GET | `/v1/ReceivedInvoices/{id}/pdf` | PDF přijaté faktury |
+
+#### Vydané objednávky — `IssuedOrders` (6)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/IssuedOrders` | Seznam vydaných objednávek |
+| POST | `/v1/IssuedOrders` | Vytvoření vydané objednávky |
+| GET | `/v1/IssuedOrders/{id}` | Detail vydané objednávky |
+| GET | `/v1/IssuedOrders/{id}/pdf` | PDF vydané objednávky |
+| GET | `/v1/IssuedOrders/{id}/status` | Stav objednávky |
+| POST | `/v1/IssuedOrders/{id}/Transfer/ToReceivedInvoice/Fully` | Přenos do přijaté faktury |
+
+#### Přijaté objednávky — `ReceivedOrders` (6)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/ReceivedOrders` | Seznam přijatých objednávek |
+| POST | `/v1/ReceivedOrders` | Vytvoření přijaté objednávky |
+| GET | `/v1/ReceivedOrders/{id}` | Detail přijaté objednávky |
+| GET | `/v1/ReceivedOrders/{id}/pdf` | PDF přijaté objednávky |
+| GET | `/v1/ReceivedOrders/{id}/status` | Stav objednávky |
+| POST | `/v1/ReceivedOrders/{id}/Transfer/ToIssuedInvoice/Fully` | Přenos do vydané faktury |
+
+#### Nabídky — `IssuedOffers` (4)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/IssuedOffers` | Seznam nabídek |
+| POST | `/v1/IssuedOffers` | Vytvoření nabídky |
+| GET | `/v1/IssuedOffers/{id}` | Detail nabídky |
+| GET | `/v1/IssuedOffers/{id}/pdf` | PDF nabídky |
+
+#### Výdejky — `IssueSlips` (4)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/IssueSlips` | Seznam výdejek |
+| POST | `/v1/IssueSlips` | Vytvoření výdejky |
+| GET | `/v1/IssueSlips/{id}` | Detail výdejky |
+| GET | `/v1/IssueSlips/{id}/pdf` | PDF výdejky |
+
+#### Zálohové faktury — `IssuedAdvanceInvoices` (9)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/IssuedAdvanceInvoices` | Seznam zálohových faktur |
+| POST | `/v1/IssuedAdvanceInvoices` | Vytvoření zálohové faktury |
+| GET | `/v1/IssuedAdvanceInvoices/{id}` | Detail zálohové faktury |
+| GET | `/v1/IssuedAdvanceInvoices/{id}/pdf` | PDF zálohové faktury |
+| GET | `/v1/IssuedAdvanceInvoices/{id}/isdoc` | ISDOC zálohové faktury |
+| GET | `/v1/IssuedAdvanceInvoices/{id}/RestToPay` | Zbývající částka |
+| GET | `/v1/IssuedAdvanceInvoices/Unpaid` | Nezaplacené zálohovky |
+| POST | `/v1/IssuedAdvanceInvoices/{id}/Liquidate/Standalone/Fully` | Plná likvidace |
+| GET | `/v1/IssuedAdvanceInvoices/Liquidation/{id}` | Detail likvidace |
+
+#### Opravné daňové doklady — `IssuedInvoiceCorrectiveTaxDocuments` (3)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/IssuedInvoiceCorrectiveTaxDocuments` | Seznam ODD |
+| GET | `/v1/IssuedInvoiceCorrectiveTaxDocuments/{id}` | Detail ODD |
+| GET | `/v1/IssuedInvoiceCorrectiveTaxDocuments/{id}/pdf` | PDF ODD |
+
+### Adresář a sklad (14 endpointů)
+
+#### Odběratelé/dodavatelé — `BusinessPartners` (3)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/BusinessPartners` | Seznam obchodních partnerů |
+| POST | `/v1/BusinessPartners` | Vytvoření obchodního partnera |
+| GET | `/v1/BusinessPartners/{id}` | Detail obchodního partnera |
+
+#### Ceníkové položky — `PriceListItems` (5)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/PriceListItems` | Seznam ceníkových položek |
+| GET | `/v1/PriceListItems/{id}` | Detail ceníkové položky |
+| POST | `/v1/PriceListItems/AvailableQuantities` | Dostupné množství |
+| POST | `/v1/PriceListItems/SellingPrices` | Prodejní ceny |
+| GET | `/v1/PriceListItems/{id}/RegistrationNumbers` | Registrační čísla |
+
+#### Prodejní ceny — `SellingPrices` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/SellingPrices` | Seznam prodejních cen |
+| GET | `/v1/SellingPrices/{id}` | Detail prodejní ceny |
+
+#### Registrační čísla — `RegistrationNumbers` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/RegistrationNumbers` | Seznam registračních čísel |
+| GET | `/v1/RegistrationNumbers/{id}` | Detail registračního čísla |
+
+#### Formy úhrady — `PaymentMethods` (3)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/PaymentMethods` | Seznam forem úhrady |
+| POST | `/v1/PaymentMethods` | Vytvoření formy úhrady |
+| GET | `/v1/PaymentMethods/{id}` | Detail formy úhrady |
+
+#### Typy plateb — `PaymentMethodTypes` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/PaymentMethodTypes` | Seznam typů plateb |
+| GET | `/v1/PaymentMethodTypes/{id}` | Detail typu platby |
+
+### Nastavení systému (22 endpointů)
+
+#### DPH sazby — `VatRates` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/VatRates` | Seznam DPH sazeb |
+| GET | `/v1/VatRates/{id}` | Detail DPH sazby |
+
+#### Měny — `Currencies` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Currencies` | Seznam měn |
+| GET | `/v1/Currencies/{id}` | Detail měny |
+
+#### Kurzy — `ExchangeRates` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/ExchangeRates` | Seznam kurzových lístků |
+| GET | `/v1/ExchangeRates/{id}` | Detail kurzového lístku |
+
+#### Banky — `Banks` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Banks` | Seznam bank |
+| GET | `/v1/Banks/{id}` | Detail banky |
+
+#### Bankovní účty — `BankAccounts` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/BankAccounts` | Seznam bankovních účtů |
+| GET | `/v1/BankAccounts/{id}` | Detail bankovního účtu |
+
+#### Pokladny — `CashRegisters` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/CashRegisters` | Seznam pokladen |
+| GET | `/v1/CashRegisters/{id}` | Detail pokladny |
+
+#### Střediska — `Centres` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Centres` | Seznam středisek |
+| GET | `/v1/Centres/{id}` | Detail střediska |
+
+#### Činnosti — `Activities` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Activities` | Seznam činností |
+| GET | `/v1/Activities/{id}` | Detail činnosti |
+
+#### Země — `Countries` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Countries` | Seznam zemí |
+| GET | `/v1/Countries/{id}` | Detail země |
+
+#### Kraje — `Regions` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Regions` | Seznam krajů |
+| GET | `/v1/Regions/{id}` | Detail kraje |
+
+#### PSČ — `CityPostCodes` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/CityPostCodes` | Seznam PSČ |
+| GET | `/v1/CityPostCodes/{id}` | Detail PSČ |
+
+#### Provozovny — `Establishments` (2)
+| Metoda | Endpoint | Popis |
+|--------|----------|-------|
+| GET | `/v1/Establishments` | Seznam provozoven |
+| GET | `/v1/Establishments/{id}` | Detail provozovny |
+
+## Souhrn endpointů podle kategorie
+
+| Kategorie | Endpointů | Entity |
+|-----------|-----------|--------|
+| **Doklady** | 41 | 8 entit |
+| **Adresář a sklad** | 14 | 6 entit |
+| **Nastavení systému** | 22 | 11 entit |
+| **CELKEM** | **87** | **25 entit** |
 
 ## Práce s tímto skillem
 
@@ -224,5 +403,5 @@ curl -X GET "https://api.mpohoda.cz/v1/BusinessPartners?pageSize=10&pageNumber=1
 
 **Verze:** 1.0.0  
 **Synchronizováno s:** api.mpohoda.cz/doc (2026-04-27)  
-**Celkem endpointů:** 78  
+**Celkem endpointů:** 87  
 **Celkem průvodců:** 5
