@@ -28,11 +28,14 @@ dokumentací na api.mpohoda.cz/doc.
 mpohoda-api/
 ├── SKILL.md                    ← Tento soubor - hlavní router
 ├── references/
-│   ├── autentizace.md          ← API klíč, OAuth2 token, zásady bezpečnosti
-│   ├── endpointy.md            ← Kompletní seznam všech 78 endpointů
-│   ├── struktura-dat.md        ← HTTP konvence, kódy chyb, stránkování
-│   ├── pruvodci.md             ← Návody: faktury, objednávky, Postman, Swagger
-│   └── sdk.md                  ← C# SDK, NuGet balíčky, příklady kódu
+    ├── autentizace.md          ← API klíč, OAuth2 token, zásady bezpečnosti
+    ├── endpointy.md            ← Kompletní seznam všech 78 endpointů
+    ├── struktura-dat.md        ← HTTP konvence, kódy chyb, stránkování
+    ├── pruvodci.md             ← Návody: faktury, objednávky, Postman, Swagger
+    ├── sdk.md                  ← C# SDK, NuGet balíčky, příklady kódu
+    ├── exporty.md              ← PDF export, ISDOC export
+    ├── pokrocile-operace.md    ← Likvidace, přenosy, stavy, platby, sklad, ceny
+    └── doklady.md              ← Vydané/přijaté faktury, objednávky, nabídky, výdejky
 └── scripts/
     ├── validate-request.py     ← Validace požadavků na API
     ├── generate-invoice.py     ← Generování JSON pro fakturu
@@ -48,6 +51,13 @@ mpohoda-api/
 | "Jak vytvořit fakturu?" | `references/pruvodci.md` |
 | "Jaký je formát odpovědi?" | `references/struktura-dat.md` |
 | "Jak použít SDK?" | `references/sdk.md` |
+| "PDF export" | `references/exporty.md` |
+| "ISDOC export" | `references/exporty.md` |
+| "Likvidace, úhrada" | `references/pokrocile-operace.md` |
+| "Přenos objednávky" | `references/pokrocile-operace.md` |
+| "Stav objednávky" | `references/pokrocile-operace.md` |
+| "Dostupné množství" | `references/pokrocile-operace.md` |
+| "Prodejní ceny" | `references/pokrocile-operace.md` |
 | "Validace požadavku" | `scripts/validate-request.py` |
 
 ## Základní URL
