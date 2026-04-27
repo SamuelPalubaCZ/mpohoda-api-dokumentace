@@ -1,18 +1,53 @@
-# Establishments
+# establishments
 
-## GET /v1/Establishments
+## `/v1/Establishments`
+
+### GET
 
 **Establishments paginated.**
 
-Gets all <b>Establishments</b> by specified pagination.
+Gets all **Establishments** by specified pagination.
+
+#### Parametry
+
+| Název | Typ | Umístění | Povinné | Popis |
+|-------|-----|----------|---------|-------|
+| After | string | query | Ne | Key set pagination after specified id. |
+| PageSize | integer | query | Ano | Page size. |
+| PageNumber | integer | query | Ano | Page number. |
+| ModifiedSince | string | query | Ne | Basic filter for modified since. |
+
+#### Odpovědi
+
+- **200** - Success
+- **401** - Unauthorized
+- **403** - Forbidden
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
 
 ---
 
-## GET /v1/Establishments/{id}
+## `/v1/Establishments/{id}`
+
+### GET
 
 **Gets Establishment by id.**
 
-Retrieves <b>Establishment</b> by passed id, that cannot be empty.
+Retrieves **Establishment** by passed id, that cannot be empty.
+
+#### Parametry
+
+| Název | Typ | Umístění | Povinné | Popis |
+|-------|-----|----------|---------|-------|
+| id | string | path | Ano |  |
+
+#### Odpovědi
+
+- **200** - Success
+- **401** - Unauthorized
+- **403** - Forbidden
+- **404** - Not Found
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
 
 ---
-

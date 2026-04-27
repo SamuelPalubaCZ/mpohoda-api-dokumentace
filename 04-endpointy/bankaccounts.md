@@ -1,18 +1,53 @@
-# BankAccounts
+# bankaccounts
 
-## GET /v1/BankAccounts
+## `/v1/BankAccounts`
+
+### GET
 
 **Bank accounts paginated.**
 
-Gets all <b>Bank accounts</b> by specified pagination.
+Gets all **Bank accounts** by specified pagination.
+
+#### Parametry
+
+| Název | Typ | Umístění | Povinné | Popis |
+|-------|-----|----------|---------|-------|
+| After | string | query | Ne | Key set pagination after specified id. |
+| PageSize | integer | query | Ano | Page size. |
+| PageNumber | integer | query | Ano | Page number. |
+| ModifiedSince | string | query | Ne | Basic filter for modified since. |
+
+#### Odpovědi
+
+- **200** - Success
+- **401** - Unauthorized
+- **403** - Forbidden
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
 
 ---
 
-## GET /v1/BankAccounts/{id}
+## `/v1/BankAccounts/{id}`
+
+### GET
 
 **Gets Bank account by id.**
 
-Retrieves <b>Bank account</b> by passed id, that cannot be empty.
+Retrieves **Bank account** by passed id, that cannot be empty.
+
+#### Parametry
+
+| Název | Typ | Umístění | Povinné | Popis |
+|-------|-----|----------|---------|-------|
+| id | string | path | Ano |  |
+
+#### Odpovědi
+
+- **200** - Success
+- **401** - Unauthorized
+- **403** - Forbidden
+- **404** - Not Found
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
 
 ---
-

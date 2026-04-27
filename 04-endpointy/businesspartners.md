@@ -1,26 +1,74 @@
-# BusinessPartners
+# businesspartners
 
-## GET /v1/BusinessPartners
+## `/v1/BusinessPartners`
+
+### GET
 
 **Business partners paginated.**
 
-Gets all <b>Business partners</b> by specified pagination.
+Gets all **Business partners** by specified pagination.
 
----
+#### Parametry
 
-## POST /v1/BusinessPartners
+| Název | Typ | Umístění | Povinné | Popis |
+|-------|-----|----------|---------|-------|
+| After | string | query | Ne | Key set pagination after specified id. |
+| PageSize | integer | query | Ano | Page size. |
+| PageNumber | integer | query | Ano | Page number. |
+| ModifiedSince | string | query | Ne | Basic filter for modified since. |
+
+#### Odpovědi
+
+- **200** - Success
+- **401** - Unauthorized
+- **403** - Forbidden
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
+
+### POST
 
 **Creates Business partner.**
 
-Creates <b>Business partner</b> by passed payload.
+Creates **Business partner** by passed payload.
+
+#### Tělo požadavku
+
+- **Content-Type:** `application/json`
+- **Schéma:** `CreateBusinessPartnerDto`
+
+#### Odpovědi
+
+- **201** - Created
+- **400** - Bad Request
+- **401** - Unauthorized
+- **403** - Forbidden
+- **404** - Not Found
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
 
 ---
 
-## GET /v1/BusinessPartners/{id}
+## `/v1/BusinessPartners/{id}`
+
+### GET
 
 **Gets Business partner by id.**
 
-Retrieves <b>Business partner</b> by passed id, that cannot be empty.
+Retrieves **Business partner** by passed id, that cannot be empty.
+
+#### Parametry
+
+| Název | Typ | Umístění | Povinné | Popis |
+|-------|-----|----------|---------|-------|
+| id | string | path | Ano |  |
+
+#### Odpovědi
+
+- **200** - Success
+- **401** - Unauthorized
+- **403** - Forbidden
+- **404** - Not Found
+- **422** - Unprocessable Entity
+- **429** - Too Many Requests
 
 ---
-
